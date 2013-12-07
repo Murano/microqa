@@ -1,4 +1,10 @@
-microqa
+Micro questions and answers system
 =======
 
-Micro questions and answers system
+Requirements:
+-------------
+
+- Flask
+- mongoengine
+- Flask-WTF
+
