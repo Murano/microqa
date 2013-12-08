@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Новый вопрос{% endblock %}
+
+{% block content %}
+    <div class="col-md-12">
+        <form method="post" action="{{ url_for('.new_question') }}" role="form">
+            {{ form.csrf_token }}
+            <div class="form-group">
+                <label for="username">{{ form.username.label }}</label>
+                {{ form.username(class="form-control", id="username", placeholder="Имя пользователя")}}
+            </div>
+            <div class="form-group">
+                <label for="title">{{ form.title.label }}</label>
+                {{ form.title(class="form-control", id="title", placeholder="Краткое содержание вопроса")}}
+            </div>
+            <div class="form-group">
+                <label for="body">{{ form.body.label }}</label>
+                {{ form.body(class="form-control", id="body", placeholder="Вопрос")}}
+            </div>
+            <div class="form-group">
+                <label for="tags">{{ form.tags.label }}</label>
+                {{ form.tags(class="form-control", id="tags", placeholder="Ваши тэги через запятую")}}
+            </div>
+            <button type="submit" class="btn btn-default">Задать вопрос</button><br /><br />
+        </form>
+    </div>
+{% endblock %}
