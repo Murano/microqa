@@ -17,3 +17,13 @@ class Question(Document):
     tags = ListField()
     timestamp = DateTimeField(default=datetime.now())
     comments = ListField(EmbeddedDocumentField(Comment))
+
+    meta = {
+        'indexes': [
+            {'fields': ['-tags'], 'sparse': True, 'types': False}
+        ]
+    }
+
+
+class Tag(Document):
+    tags = ListField(StringField())

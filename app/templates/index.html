@@ -4,13 +4,6 @@
 
 {% block content %}
     <div class="col-md-12">
-        {% for question in questions %}
-            <p>
-                <h5>{{ question.username }}, {{ question.timestamp }}</h5>
-                <h4><a href="/question/{{ question.pk }}">{{ question.title }}</a></h4>
-                Тэги: {% for tag in question.tags %}| {{ tag }} |{% endfor %}
-                <hr width="100%">
-            </p>
-        {% endfor %}
+        {% include 'includes/questions.html' %}
     </div>
 {% endblock %}

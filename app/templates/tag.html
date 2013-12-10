@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Поиск по тегам{% endblock %}
+
+{% block content %}
+        {% if questions %}
+            <div class="page-header">
+                <h3>{{ tag }}</h3>
+            </div>
+            <div class="col-md-12">
+                {% include 'includes/questions.html' %}
+            </div>
+        {% else %}
+            <p>Тэг не найден</p>
+        {% endif %}
+
+{% endblock %}
