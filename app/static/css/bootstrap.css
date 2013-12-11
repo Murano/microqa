@@ -7116,3 +7116,5 @@ td.visible-print {
     display: none !important;
   }
 }
+
+.tag-list{line-height: 2.3; border-bottom: 1px solid #EEEEEE; margin-bottom: 20px; padding-bottom: 10px;}
