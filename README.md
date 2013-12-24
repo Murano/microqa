@@ -7,4 +7,4 @@ Requirements:
 - Flask
 - mongoengine
 - Flask-WTF
-
+- Flask-Login

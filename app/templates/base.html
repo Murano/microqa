@@ -38,11 +38,35 @@
             <li><a href="#">Тэги</a></li>
         </ul>
         <div class="navbar-collapse collapse navbar-form navbar-right">
-            <a class="btn btn-primary" href="{{ url_for('.new_question') }}">Задать вопрос</a>
+          {% if current_user.is_authenticated() %}
+            <div class="btn-group">
+              <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">{{ current_user.username }} <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="{{ url_for('.new_question') }}">Задать вопрос</a></li>
+                <li class="divider"></li>
+                <li><a href="{{ url_for('.logout') }}">Выйти</a></li>
+              </ul>
+            </div>
+          {% else %}
+            <a class="btn btn-primary" href="{{ url_for('.login') }}">Вход/Регистрация</a>
+          {% endif %}
         </div>
         </div><!--/.nav-collapse -->
       </div>
 
+      {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+          {% for category, message in messages %}
+          <div class="alert{{ ' alert-%s' % category if category != 'message' else '' }}">
+            <button type=button class=close data-dismiss="alert">&times;</button>
+            {{ message }}
+          </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      {% block tabs %}{% endblock %}
       {% block content %}{% endblock %}
 
       <div class="panel-footer">&copy; 2013-2014 Вопросы и ответы</div>
