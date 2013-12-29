@@ -16,13 +16,10 @@
             <p>{{ comment.body }}</p>
             <hr width="30%" align="left">
         {% endfor %}
+        {% if current_user.is_authenticated() %}
         <p>
             <form method="post" action="/question/{{ question.pk }}" role="form">
                 {{ form.csrf_token }}
-                <div class="form-group">
-                    <label for="username">{{ form.username.label }}</label>
-                    {{ form.username(class="form-control", id="username", placeholder="Имя пользователя")}}
-                </div>
                 <div class="form-group">
                     <label for="body">{{ form.body.label }}</label>
                     {{ form.body(class="form-control", id="username", placeholder="Ваш ответ")}}
@@ -30,6 +27,12 @@
                 <button type="submit" class="btn btn-default">Ответить</button><br /><br />
             </form>
         </p>
+        {% else %}
+            <p>
+                <a href="{{ url_for('login') }}">Войдите</a>, или
+                <a href="{{ url_for('register') }}">зарегистрируйтесь</a> чтобы отправлять комментарии.  
+            </p>
+        {% endif %}
 
     </div>
 {% endblock %}
