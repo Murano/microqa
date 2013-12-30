@@ -23,7 +23,7 @@ def new_question():
         tags = form.tags.data
         if tags != "":
             tags = set(map(lambda x: x.strip(), tags.split(",")))
-            tag_obj = Tag.objects.get_or_create()[0]
+            tag_obj = Tag.objects.first()
             for tag in tags:
                 tag_obj.update(add_to_set__tags=tag)
             tag_obj.save()
@@ -72,7 +72,7 @@ def tag(tag):
 
 @app.route('/tags')
 def tags():
-    tags = Tag.objects.get_or_create()[0]
+    tags = Tag.objects.first()
     return render_template('tags.html', tags=tags.tags)
 
 
